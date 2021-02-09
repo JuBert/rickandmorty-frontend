@@ -1,42 +1,28 @@
 import React, { useState } from 'react';
 import '../App.css';
-import axios from 'axios';
 import history from '../history';
 import { Link } from 'react-router-dom';
-import PropTypes from 'prop-types';
+// REDUX
+import { useSelector, useDispatch } from 'react-redux';
+import { loginUser } from '../redux/actions/userAction';
 
 const Login = () => {
+  const user = useSelector((state) => state.user);
+  const dispatch = useDispatch();
+
   const [state, setState] = useState({
     email: '',
     password: '',
   });
-  const [loading, setLoading] = useState(false);
-  const [errors, setErrors] = useState({});
+  // const [errors, setErrors] = useState({});
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    console.log('Submit');
-    setLoading(true);
     const userData = {
       email: state.email,
       password: state.password,
     };
-
-    axios
-      .post(
-        'https://europe-west1-mortyandrick-84fc9.cloudfunctions.net/api/login',
-        userData
-      )
-      .then((res) => {
-        console.log(res.data);
-        setLoading(false);
-        history.push('/');
-      })
-      .catch((err) => {
-        setErrors(err.response);
-        console.log(err.response);
-        setLoading(false);
-      });
+    dispatch(loginUser(userData, history));
   };
 
   const handleChange = (event) => {
@@ -92,7 +78,5 @@ const Login = () => {
     </div>
   );
 };
-
-// login.PropTypes = {};
 
 export default Login;
