@@ -9,7 +9,6 @@ const CharacterList = (props) => {
   const dispatch = useDispatch();
   const characterId = props.character.id;
   const handleClick = (event) => {
-    console.log(characterId);
     dispatch(updateFavorite(characterId));
   };
   return (

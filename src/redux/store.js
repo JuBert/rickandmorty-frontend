@@ -13,19 +13,19 @@ const reducers = combineReducers({
   UI: uiReducer,
 });
 
-const store = createStore(
-  reducers,
-  initalState,
-  compose(
-    applyMiddleware(...middelware),
-    window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
-  )
-);
-
 // const store = createStore(
 //   reducers,
 //   initalState,
-//   compose(applyMiddleware(...middelware))
+//   compose(
+//     applyMiddleware(...middelware),
+//     window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+//   )
 // );
+
+const store = createStore(
+  reducers,
+  initalState,
+  compose(applyMiddleware(...middelware))
+);
 
 export default store;

@@ -18,6 +18,9 @@ import { logoutUser, getCharacters } from './redux/actions/userAction';
 import Navbar from './components/Navbar';
 import AuthRoute from './components/AuthRoute';
 
+axios.defaults.baseURL =
+  'https://europe-west1-mortyandrick-84fc9.cloudfunctions.net/api';
+
 const token = localStorage.FBIdToken;
 if (token) {
   const decodedToken = jwtDecode(token);

@@ -8,6 +8,7 @@ import { getCharacters } from '../redux/actions/userAction';
 
 const Home = () => {
   const characters = useSelector((state) => state.user.characters.results);
+  const user = useSelector((state) => state.user);
   const dispatch = useDispatch();
 
   useEffect(() => {
