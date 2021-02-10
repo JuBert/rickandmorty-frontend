@@ -101,6 +101,12 @@ NAVBAR STYLES
   margin-bottom: 15px;
 }
 
+.character-button {
+  position: relative;
+  left: 0;
+  top: 0;
+}
+
 /* LOGIN FORM */
 .login-container {
   display: grid;

@@ -1,12 +1,15 @@
 import {
   SET_CHARACTERS,
+  SET_FAVORITECHARACTERS,
   SET_AUTHENTICATED,
   SET_UNAUTHENTICATED,
+  UPDATEFAVORITE,
 } from '../types';
 
 const initialState = {
   authenticated: false,
-  credentials: {},
+  characters: [],
+  favCharacters: [],
 };
 
 export default function (state = initialState, action) {
@@ -21,7 +24,16 @@ export default function (state = initialState, action) {
     case SET_CHARACTERS:
       return {
         authenticated: true,
-        ...action.payload,
+        characters: action.payload,
+      };
+    case SET_FAVORITECHARACTERS:
+      return {
+        ...state,
+        favCharacters: action.payload,
+      };
+    case UPDATEFAVORITE:
+      return {
+        ...state,
       };
     default:
       return state;

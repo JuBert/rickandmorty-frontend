@@ -1,18 +1,17 @@
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import React, { useEffect } from 'react';
 import '../App.css';
 // Components
 import CharacterList from '../components/CharacterList';
+// REDUX
+import { useSelector, useDispatch } from 'react-redux';
+import { getCharacters } from '../redux/actions/userAction';
 
 const Home = () => {
-  const [characters, setCharacters] = useState(null);
-  useEffect(async () => {
-    await axios
-      .get('/characters')
-      .then(({ data: { results } }) => {
-        setCharacters(results);
-      })
-      .catch((err) => console.log(err));
+  const characters = useSelector((state) => state.user.characters.results);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getCharacters({ type: 'SET_CHARACTERS' }));
   }, []);
   let characterMarkup = characters ? (
     characters.map((character) => (

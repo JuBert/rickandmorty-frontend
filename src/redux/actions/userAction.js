@@ -1,11 +1,33 @@
 import {
   SET_CHARACTERS,
+  SET_FAVORITECHARACTERS,
   SET_ERRORS,
   CLEAR_ERRORS,
   LOADING_UI,
   SET_UNAUTHENTICATED,
+  UPDATEFAVORITE,
 } from '../types';
 import axios from 'axios';
+
+export const signupUser = (newUserData, history) => (dispatch) => {
+  // dispatch({ type: LOADING_UI });
+  axios
+    .post('/signup', newUserData)
+    .then((res) => {
+      const FBIdToken = `Bearer ${res.data.token}`;
+      localStorage.setItem('FBIdToken', FBIdToken);
+      axios.defaults.headers.common['Authorization'] = FBIdToken;
+      dispatch(getCharacters());
+      dispatch({ type: CLEAR_ERRORS });
+      history.push('/');
+    })
+    .catch((err) => {
+      dispatch({
+        type: SET_ERRORS,
+        payload: err.response.data,
+      });
+    });
+};
 
 export const loginUser = (userData, history) => (dispatch) => {
   //   dispatch({ type: LOADING_UI });
@@ -27,7 +49,14 @@ export const loginUser = (userData, history) => (dispatch) => {
     });
 };
 
+export const logoutUser = () => (dispatch) => {
+  localStorage.removeItem('FBIdToken');
+  delete axios.defaults.headers.common['Authorization'];
+  dispatch({ type: SET_UNAUTHENTICATED });
+};
+
 export const getCharacters = () => (dispatch) => {
+  dispatch({ type: LOADING_UI });
   axios
     .get('/characters')
     .then((res) => {
@@ -39,28 +68,27 @@ export const getCharacters = () => (dispatch) => {
     .catch((err) => console.log(err));
 };
 
-export const signupUser = (newUserData, history) => (dispatch) => {
-  //   dispatch({ type: LOADING_UI });
+export const getFavorites = () => (dispatch) => {
+  dispatch({ type: LOADING_UI });
   axios
-    .post('/signup', newUserData)
+    .get('/favorites')
     .then((res) => {
-      const FBIdToken = `Bearer ${res.data.token}`;
-      localStorage.setItem('FBIdToken', FBIdToken);
-      axios.defaults.headers.common['Authorization'] = FBIdToken;
-      dispatch(getCharacters());
-      dispatch({ type: CLEAR_ERRORS });
-      history.push('/');
-    })
-    .catch((err) => {
       dispatch({
-        type: SET_ERRORS,
-        payload: err.response.data,
+        type: SET_FAVORITECHARACTERS,
+        payload: res.data,
       });
-    });
+    })
+    .catch((err) => console.log(err));
 };
 
-export const logoutUser = () => (dispatch) => {
-  localStorage.removeItem('FBIdToken');
-  delete axios.defaults.headers.common['Authorization'];
-  dispatch({ type: SET_UNAUTHENTICATED });
+export const updateFavorite = (character) => (dispatch) => {
+  // dispatch({ type: LOADING_UI });
+  axios
+    .get(`/characters/${character.id}`)
+    .then(() => {
+      dispatch({
+        type: UPDATEFAVORITE,
+      });
+    })
+    .catch((err) => console.log(err));
 };

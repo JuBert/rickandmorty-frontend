@@ -1,18 +1,18 @@
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import React, { useEffect } from 'react';
 import '../App.css';
 // Components
 import CharacterList from '../components/CharacterList';
+// REDUX
+import { useSelector, useDispatch } from 'react-redux';
+import { getFavorites } from '../redux/actions/userAction';
 
 const Favorites = () => {
-  const [favCharacters, setFavCharacters] = useState(null);
-  useEffect(async () => {
-    await axios
-      .get('/favorites')
-      .then((results) => {
-        setFavCharacters(results.data);
-      })
-      .catch((err) => console.log(err));
+  const favCharacters = useSelector((state) => state.user.favCharacters);
+  console.log(favCharacters);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getFavorites());
   }, []);
   let favCharacterMarkup = favCharacters ? (
     favCharacters.map((character) => (
