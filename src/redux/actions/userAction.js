@@ -5,7 +5,7 @@ import {
   CLEAR_ERRORS,
   LOADING_UI,
   SET_UNAUTHENTICATED,
-  UPDATEFAVORITE,
+  // UPDATE_FAVORITE,
 } from '../types';
 import axios from 'axios';
 
@@ -81,13 +81,13 @@ export const getFavorites = () => (dispatch) => {
     .catch((err) => console.log(err));
 };
 
-export const updateFavorite = (character) => (dispatch) => {
+export const updateFavorite = (characterId) => (dispatch) => {
   // dispatch({ type: LOADING_UI });
   axios
-    .get(`/characters/${character.id}`)
+    .get(`/characters/${characterId}`)
     .then(() => {
       dispatch({
-        type: UPDATEFAVORITE,
+        type: SET_FAVORITECHARACTERS,
       });
     })
     .catch((err) => console.log(err));

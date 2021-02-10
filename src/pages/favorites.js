@@ -7,13 +7,13 @@ import { useSelector, useDispatch } from 'react-redux';
 import { getFavorites } from '../redux/actions/userAction';
 
 const Favorites = () => {
-  const favCharacters = useSelector((state) => state.user.favCharacters);
-  console.log(favCharacters);
+  let favCharacters = useSelector((state) => state.user.favCharacters);
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(getFavorites());
-  }, []);
+  }, [favCharacters]);
+
   let favCharacterMarkup = favCharacters ? (
     favCharacters.map((character) => (
       <CharacterList key={character.id} character={character} />

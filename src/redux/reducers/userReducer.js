@@ -3,7 +3,6 @@ import {
   SET_FAVORITECHARACTERS,
   SET_AUTHENTICATED,
   SET_UNAUTHENTICATED,
-  UPDATEFAVORITE,
 } from '../types';
 
 const initialState = {
@@ -30,10 +29,6 @@ export default function (state = initialState, action) {
       return {
         ...state,
         favCharacters: action.payload,
-      };
-    case UPDATEFAVORITE:
-      return {
-        ...state,
       };
     default:
       return state;

@@ -2,22 +2,15 @@ import React from 'react';
 import '../App.css';
 import axios from 'axios';
 // REDUX
-import { useSelector, useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { updateFavorite } from '../redux/actions/userAction';
 
 const CharacterList = (props) => {
-  const character = useSelector((state) => state.user.favCharacters);
   const dispatch = useDispatch();
   const characterId = props.character.id;
   const handleClick = (event) => {
+    console.log(characterId);
     dispatch(updateFavorite(characterId));
-
-    // axios
-    //   .get(`/characters/${props.character.id}`)
-    //   .then(() => {
-    //     return console.log('Added new favorite');
-    //   })
-    //   .catch((err) => console.log(err));
   };
   return (
     <li className="character-li">

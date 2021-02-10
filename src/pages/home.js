@@ -11,8 +11,9 @@ const Home = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(getCharacters({ type: 'SET_CHARACTERS' }));
+    dispatch(getCharacters());
   }, []);
+
   let characterMarkup = characters ? (
     characters.map((character) => (
       <CharacterList key={character.id} character={character} />
