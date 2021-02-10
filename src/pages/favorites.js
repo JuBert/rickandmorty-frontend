@@ -23,7 +23,7 @@ const Favorites = () => {
   );
   return (
     <div>
-      <h1>Favorites page</h1>
+      <h1 style={{ marginLeft: 40 }}>Favorites page</h1>
       <ul className="character-list">{favCharacterMarkup}</ul>
     </div>
   );

@@ -23,7 +23,7 @@ const Home = () => {
   );
   return (
     <div>
-      <h1>Home page</h1>
+      <h1 style={{ marginLeft: 40 }}>Home page</h1>
       <ul className="character-list">{characterMarkup}</ul>
     </div>
   );

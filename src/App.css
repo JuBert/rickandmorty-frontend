@@ -7,7 +7,7 @@ body {
   margin: 0%;
 }
 .container {
-  margin: 80px auto 0 auto;
+  margin: 50px auto 0 auto;
   max-width: 1200px;
 }
 
@@ -15,66 +15,20 @@ body {
 NAVBAR STYLES
 */
 .navbar {
+  background: #666;
   display: flex;
-  background: linear-gradient(#e89ac7, #f394d3);
-  justify-content: space-between;
-  align-items: center;
-  padding: 0px 40px;
-  height: 80px;
-}
-.logo-nav {
-  display: flex;
-  align-items: center;
-  justify-content: space-evenly;
-}
-.logo-container {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-.logo {
-  width: 45px;
-  height: 45px;
-}
-.nav-options {
-  padding-left: 25px;
-  display: grid;
-  grid-template-columns: repeat(3, auto);
-  grid-gap: 50px;
-  list-style-type: none;
-}
-.mobile-option {
-  display: none;
-}
-.mobile-menu {
-  display: none;
-}
-
-.option :hover {
+  padding: 16px;
   color: white;
 }
-.signin-up {
+.nav-items {
   display: flex;
-  padding: 0px 5px;
-  list-style-type: none;
 }
-.sign-in {
-  padding-right: 50px;
-  align-self: center;
+.nav-link {
+  padding-right: 8px;
 }
-.sign-in :hover {
-  color: white;
+.nav-items-right {
+  margin-left: auto;
 }
-.signup-btn {
-  padding: 10px 10px;
-  height: 2.4rem;
-  border-radius: 3px;
-  background: rgb(222, 9, 241);
-  color: white;
-  cursor: pointer;
-  align-items: center;
-}
-
 /* LIST STYLE*/
 .character-list {
   margin: 25px;
@@ -113,7 +67,7 @@ NAVBAR STYLES
   grid-template-columns: repeat(12, 1fr);
   margin: 0;
   padding: 0;
-  background: rgb(222, 9, 241);
+  background: #fff;
 }
 
 .login-form {
@@ -141,6 +95,16 @@ NAVBAR STYLES
 }
 
 .login-button {
-  margin: 0;
-  padding: 0;
+  background-color: white;
+  color: black;
+  border: 2px solid #666;
+  padding: 12px 28px;
+  font-size: 14px;
+  border-radius: 4px;
+}
+
+.character-button {
+  border-radius: 50%;
+  margin-right: 5px;
+  border: 2px solid #666;
 }
