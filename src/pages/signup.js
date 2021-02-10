@@ -22,7 +22,6 @@ const Login = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    // console.log('Submit');
     setLoading(true);
     const newUserData = {
       email: state.email,
